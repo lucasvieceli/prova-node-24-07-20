@@ -1,0 +1,308 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Template",
+    "version": "1.0.0",
+    "title": "Tempalte API"
+  },
+  "host": "localhost:3331",
+  "tags": [
+    {"name": "Auth"}
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "description": "Faz login no sistema",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "username",
+            "description": "E-mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "description": "password",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type" : "string" },
+                "name": { "type" : "string" },
+                "phone": { "type" : "string" },
+                "cpf": { "type" : "string" },
+                "credtedDate": { "type" : "string" },
+                "modifiedDate": { "type" : "string" }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "/auth/role": {
+      "post": {
+        "description": "Cadastra perfil",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "name",
+            "description": "Nome do perfil",
+            "schema": {
+              "type": "string",
+              "length": "150"
+            }
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "description": "password",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type" : "string" },
+                "name": { "type" : "string" },
+                "phone": { "type" : "string" },
+                "cpf": { "type" : "string" },
+                "credtedDate": { "type" : "string" },
+                "modifiedDate": { "type" : "string" }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "description": "Cadastra usuário comum",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "name",
+            "description": "Nome da pessoa",
+            "schema": {
+              "type": "string",
+            }
+          },
+          {
+            "in": "body",
+            "name": "phone",
+            "description": "Telefone da pessoa",
+            "schema": {
+              "type": "string",
+            }
+          },
+          {
+            "in": "body",
+            "name": "cpf",
+            "description": "CPF da pessoa",
+            "schema": {
+              "type": "string",
+            }
+          },
+          {
+            "in": "body",
+            "name": "email",
+            "description": "E-mail e nome de usuário",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "description": "senha",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type" : "string" },
+                "name": { "type" : "string" },
+                "phone": { "type" : "string" },
+                "cpf": { "type" : "string" },
+                "email": { "type" : "string" },
+                "credtedDate": { "type" : "string" },
+                "modifiedDate": { "type" : "string" },
+                "access_token": { "type" : "string" }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "description": "Endpoint para usuário recuperar senha",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "username",
+            "description": "E-mail e nome de usuário",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+             "example": true
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password/update": {
+      "post": {
+        "description": "Endpoint para trocar a senha do usuário",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "token",
+            "description": "token enviado por email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "description": "Nova senha",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "passwordConfirm",
+            "description": "Nova senha confirmação",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+             "example": true
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+  },
+  "definitions": {}
+}
